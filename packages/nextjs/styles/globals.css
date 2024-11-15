@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --bgcolor: #ffffff;
+  --primary: #93bbfb;
+  --primary-content: #212638;
+  --secondary: #dae8ff;
+  --secondary-content: #212638;
+  --accent: #93bbfb;
+  --accent-content: #212638;
+  --neutral: #212638;
+  --neutral-content: #ffffff;
+  --base-100: #ffffff;
+  --base-content: #212638;
+  /* Add more as needed */
+}
+
+[data-theme="dark"] {
+  --bgcolor: #000000;
+  --primary: #ea0c0c;
+  --primary-content: #f9fbff;
+  --secondary: #323f61;
+  --secondary-content: #f9fbff;
+  --accent: #4969a6;
+  --accent-content: #f9fbff;
+  --neutral: #f9fbff;
+  --neutral-content: #385183;
+  --base-100: #385183;
+  --base-content: #f9fbff;
+  /* Add more dark theme colors */
+}
+
+body {
+  min-height: 100vh;
+  font-family: Manrope;
+}
+
+h1{
+  font-size: 40px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.btn {
+  @apply shadow-md;
+}
+
+.btn.btn-ghost {
+  @apply shadow-none;
+}

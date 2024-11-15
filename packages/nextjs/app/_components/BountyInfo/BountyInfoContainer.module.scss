@@ -1,0 +1,123 @@
+.BountyInfo {
+  background: white;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px; /* Increase width for a larger panel */
+  margin: auto;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  font-weight: 500;
+  color: #555;
+}
+
+.value {
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.creatorInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.address {
+  word-break: break-all;
+}
+
+.copyButton,
+.linkButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a90e2;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #2f6bb2;
+  }
+}
+
+.copyFeedback {
+  color: #4caf50;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  text-align: right;
+  position: absolute;
+  top: 16px;
+  right: 50px;
+  animation: fade-in-out 2s forwards;
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.actionButton {
+  background-color: white;
+  border: 1px solid #4a90e2;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 500;
+  color: #4a90e2;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.disabledButton {
+  color: #aaa;
+  border-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Additional padding at the bottom for button spacing */
+.flex {
+  margin-bottom: 16px; /* Adds space below buttons */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between; /* Adjusts the space between buttons */
+  margin-top: 16px; /* Adjust as needed */
+  gap: 8px; /* Reduces the space between buttons */
+}
