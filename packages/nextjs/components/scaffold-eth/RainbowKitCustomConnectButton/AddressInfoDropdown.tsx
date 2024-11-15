@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { NetworkOptions } from "./NetworkOptions";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { getAddress } from "viem";
-import { Address } from "viem";
 import { useDisconnect } from "wagmi";
 import {
   ArrowLeftOnRectangleIcon,
@@ -20,9 +19,9 @@ import { getTargetNetworks } from "~~/utils/scaffold-eth";
 const allowedNetworks = getTargetNetworks();
 
 type AddressInfoDropdownProps = {
-  address: Address;
+  address: string;
   blockExplorerAddressLink: string | undefined;
-  displayName: string;
+  displayName?: string;
   ensAvatar?: string;
 };
 
