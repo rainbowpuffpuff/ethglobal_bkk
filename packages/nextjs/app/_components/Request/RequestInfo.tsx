@@ -5,9 +5,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { Input } from "../ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Resolver, useForm } from "react-hook-form";
 import * as z from "zod";
+
+// Define the form type
+type FormValues = {
+  requesterRequest: string;
+  codeRequest: string;
+  rewardInEth: string;
+};
 
 // Define the form type
 type FormValues = {
