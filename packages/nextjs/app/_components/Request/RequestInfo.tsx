@@ -6,8 +6,15 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+// Define the form type
+type FormValues = {
+  requesterRequest: string;
+  codeRequest: string;
+  rewardInEth: string;
+};
 
 const formSchema = z.object({
   requesterRequest: z.string().min(2, {
@@ -24,8 +31,8 @@ const formSchema = z.object({
 });
 
 const RequestInfo = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema) as any,
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema) as Resolver<FormValues>,
     defaultValues: {
       requesterRequest: "",
       codeRequest: "",
