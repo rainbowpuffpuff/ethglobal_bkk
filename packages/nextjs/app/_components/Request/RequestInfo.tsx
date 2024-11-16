@@ -1,13 +1,13 @@
 "use client";
 
-import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
-import { Input } from "../ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { useForm, type Resolver } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { type Resolver, useForm } from "react-hook-form";
+import * as z from "zod";
 
 // Define the form type
 type FormValues = {
@@ -23,9 +23,10 @@ const formSchema = z.object({
   codeRequest: z.string().min(10, {
     message: "Code request must be at least 10 characters.",
   }),
-  rewardInEth: z.string()
+  rewardInEth: z
+    .string()
     .min(1, { message: "Reward amount is required" })
-    .refine((val) => !isNaN(Number(val)) && Number(val) >= 0, {
+    .refine(val => !isNaN(Number(val)) && Number(val) >= 0, {
       message: "Reward must be a non-negative number",
     }),
 });
@@ -73,11 +74,7 @@ const RequestInfo = () => {
                 <FormItem>
                   <FormLabel>Code request</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Enter your code here..."
-                      className="min-h-[120px] font-mono"
-                      {...field}
-                    />
+                    <Textarea placeholder="Enter your code here..." className="min-h-[120px] font-mono" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -90,14 +87,16 @@ const RequestInfo = () => {
                 <FormItem>
                   <FormLabel>Reward in ETH</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="number" 
-                      step="0.01" 
-                      placeholder="0.15" 
+                    <Input
+                      type="number"
+                      step="0.01"
+                      placeholder="0.15"
                       className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                      onKeyDown={(e) => {
-                        if (!/[\d.]/.test(e.key) && 
-                            !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)) {
+                      onKeyDown={e => {
+                        if (
+                          !/[\d.]/.test(e.key) &&
+                          !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
+                        ) {
                           e.preventDefault();
                         }
                         // Prevent multiple decimal points
@@ -105,7 +104,7 @@ const RequestInfo = () => {
                           e.preventDefault();
                         }
                       }}
-                      {...field} 
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
