@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "datasite"
+version = "0.1.0"
+description = "Datasite package for ETHGlobal BKK"
+authors = ["Albina Nikiforova <albina.nikiforova.5670@gmail.com>"]
+
+[tool.poetry.dependencies]
+python =">=3.10,<3.13"
+syft = "0.9.0"
+flask = "2.3.2"
+flask-cors = "3.0.10"
+tenseal = "0.3.15"
+scikit-learn = "1.3.1"
+pandas = "2.2.2"
+matplotlib = "3.8.0"
+fastapi = "0.111.0"
