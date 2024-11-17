@@ -1,5 +1,6 @@
 import styles from "./BountyInfoContainer.module.scss";
-import {  IoCopy, IoOpenOutline } from "react-icons/io5"; // Added Open icon
+import { IoCopy, IoOpenOutline } from "react-icons/io5";
+// Added Open icon
 import { Bounty } from "~~/types/bounty";
 
 export type BountyInfoProps = Bounty & {
@@ -39,7 +40,7 @@ const BountyInfo = ({
             <IoCopy size={16} />
           </button>
           <a
-            href={`https://optimistic.etherscan.io/address/${creator}`}
+            href={`https://explorer.sepolia.linea.build/address/${creator}`}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.linkButton}
@@ -62,7 +63,9 @@ const BountyInfo = ({
 
       <div className={`${styles.infoRow}`}>
         <span className={styles.label}>Number of participants</span>
-        <span className={styles.value}>{progress} of {maxProgress}</span>
+        <span className={styles.value}>
+          {progress} of {maxProgress}
+        </span>
       </div>
 
       <div className={`${styles.infoRow}`}>
@@ -76,7 +79,9 @@ const BountyInfo = ({
       </div>
 
       <div className="flex justify-around mt-6">
-        <button className={styles.actionButton} onClick={onStart}>Start</button>
+        <button className={styles.actionButton} onClick={onStart}>
+          Start
+        </button>
         <button className={`${styles.actionButton} ${styles.disabledButton}`} disabled>
           Manage data
         </button>

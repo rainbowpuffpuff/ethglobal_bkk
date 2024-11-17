@@ -72,7 +72,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
 
   // const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/think2earn";
 
-  const network = "matic";
+  const network = "linea-sepolia";
   const subgraphuris = {
     "optimism-sepolia": "https://api.studio.thegraph.com/query/77139/think2earn/version/latest",
     matic: "https://api.studio.thegraph.com/query/77139/thinkplusearn/version/latest",
