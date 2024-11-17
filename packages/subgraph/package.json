@@ -19,6 +19,8 @@
     "dependencies": {
         "@graphprotocol/graph-cli": "^0.55.0",
         "@graphprotocol/graph-ts": "^0.31.0",
+        "ansi-styles": "^6.2.0",
+        "graph-cli": "^0.0.1",
         "ts-node": "^10.9.1",
         "typescript": "^5.0.4"
     },

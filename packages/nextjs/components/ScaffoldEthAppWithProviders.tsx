@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { getNetwork, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
 import { Toaster } from "react-hot-toast";
-import { WagmiProvider } from "wagmi";
+import { WagmiProvider, useAccount } from "wagmi";
 import { Header } from "~~/components/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
@@ -21,12 +22,24 @@ export const queryClient = new QueryClient();
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
+  const [connectedNetwork, setConnectedNetwork] = useState<string | null | undefined>(null);
+  const { primaryWallet } = useDynamicContext();
+
+  console.log("primaryWallet", primaryWallet);
+
+  useEffect(() => {
+    primaryWallet?.connector.getNetwork().then(network => {
+      setConnectedNetwork(network as string);
+    });
+  }, [primaryWallet]);
 
   useEffect(() => {
     if (price > 0) {
       setNativeCurrencyPrice(price);
     }
   }, [setNativeCurrencyPrice, price]);
+
+  //You have to reload  the page on network change
 
   return (
     <>
@@ -51,15 +64,22 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
   const [mounted, setMounted] = useState(false);
+  const [connectedNetwork, setConnectedNetwork] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   // const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/think2earn";
-  const subgraphUri = "https://api.studio.thegraph.com/query/77139/think2earn/version/latest";
+
+  const network = "matic";
+  const subgraphuris = {
+    "optimism-sepolia": "https://api.studio.thegraph.com/query/77139/think2earn/version/latest",
+    matic: "https://api.studio.thegraph.com/query/77139/thinkplusearn/version/latest",
+    "linea-sepolia": "https://api.studio.thegraph.com/query/77139/thinkandearn/version/latest",
+  };
   const apolloClient = new ApolloClient({
-    uri: subgraphUri,
+    uri: subgraphuris[network],
     cache: new InMemoryCache(),
   });
 

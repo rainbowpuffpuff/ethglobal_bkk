@@ -2,13 +2,18 @@
 
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Input } from "../ui/input";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { type Resolver, useForm } from "react-hook-form";
+import * as z from "zod";
 import { type Resolver, useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -34,6 +39,7 @@ const formSchema = z.object({
     message: "Code request must be at least 10 characters.",
   }),
   rewardInEth: z
+    
     .string()
     .min(1, { message: "Reward amount is required" })
     .refine(val => !isNaN(Number(val)) && Number(val) >= 0, {
@@ -56,14 +62,14 @@ const RequestInfo = () => {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto border-none">
       <CardHeader>
         <CardTitle>Code requests</CardTitle>
         <CardDescription>Read and accept code requests on your data</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 border-none">
             <FormField
               control={form.control}
               name="requesterRequest"

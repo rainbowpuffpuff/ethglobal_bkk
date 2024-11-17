@@ -5,6 +5,12 @@
     },
     "Think2Earn": {
       "address": "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
+    },
+    "thinkandearn" : {
+      "address": "0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee"
+    },
+    "thinkplusearn": {
+      "address": "0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee"
     }
   }
 }
