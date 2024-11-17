@@ -2,27 +2,12 @@
 
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
-import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { Input } from "../ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Resolver, useForm } from "react-hook-form";
 import * as z from "zod";
-import { type Resolver, useForm } from "react-hook-form";
-import * as z from "zod";
-
-// Define the form type
-type FormValues = {
-  requesterRequest: string;
-  codeRequest: string;
-  rewardInEth: string;
-};
 
 // Define the form type
 type FormValues = {
@@ -39,7 +24,7 @@ const formSchema = z.object({
     message: "Code request must be at least 10 characters.",
   }),
   rewardInEth: z
-    
+
     .string()
     .min(1, { message: "Reward amount is required" })
     .refine(val => !isNaN(Number(val)) && Number(val) >= 0, {
