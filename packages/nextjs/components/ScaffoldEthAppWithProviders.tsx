@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+// import { useAccount } from "wagmi"; // Commented out as it's unused
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
-import { getNetwork, useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
 import { Toaster } from "react-hot-toast";
-import { WagmiProvider, useAccount } from "wagmi";
+import { WagmiProvider } from "wagmi";
 import { Header } from "~~/components/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
@@ -22,15 +23,15 @@ export const queryClient = new QueryClient();
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
-  const [connectedNetwork, setConnectedNetwork] = useState<string | null | undefined>(null);
+  // const [connectedNetwork, setConnectedNetwork] = useState<string | null | undefined>(null); // Removed as unused
   const { primaryWallet } = useDynamicContext();
 
   console.log("primaryWallet", primaryWallet);
 
   useEffect(() => {
-    primaryWallet?.connector.getNetwork().then(network => {
-      setConnectedNetwork(network as string);
-    });
+    // primaryWallet?.connector.getNetwork().then(network => {
+    //   setConnectedNetwork(network as string);
+    // }); // Commented out as it's unused
   }, [primaryWallet]);
 
   useEffect(() => {
@@ -52,25 +53,15 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// export const queryClient = new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       refetchOnWindowFocus: false,
-//     },
-//   },
-// });
-
 export const ScaffoldEthAppWithProviders = ({ children }: { children: React.ReactNode }) => {
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
   const [mounted, setMounted] = useState(false);
-  const [connectedNetwork, setConnectedNetwork] = useState<string | null>(null);
+  // const [connectedNetwork, setConnectedNetwork] = useState<string | null>(null); // Removed as unused
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/think2earn";
 
   const network = "linea-sepolia";
   const subgraphuris = {
@@ -87,9 +78,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
     <ApolloProvider client={apolloClient}>
       <DynamicContextProvider
         settings={{
-          // Find your environment id at https://app.dynamic.xyz/dashboard/developer
           environmentId: "2e83ce92-44b3-48cc-9897-0c35199b1e29",
-
           walletConnectors: [EthereumWalletConnectors],
           eventsCallbacks: {
             onWalletRemoved: args => {

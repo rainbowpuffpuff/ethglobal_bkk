@@ -4,7 +4,7 @@ import Backdrop from "../Backdrop";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoIosAdd } from "react-icons/io";
-import { useAccount, useBalance, useWriteContract } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 import useBounties from "~~/hooks/useBounties";
 
 const BountyCreator = () => {
@@ -37,7 +37,7 @@ const BountyCreator = () => {
     <div>
       <button
         onClick={() => setOpenCreator(true)}
-        className="h-[42px] rounded-full border pr-8 pl-8 pb-2 pt-2 text-center border border-black dark:border-white"
+        className="h-[42px] rounded-full pr-8 pl-8 pb-2 pt-2 text-center border border-black dark:border-white"
       >
         <div className="flex gap-2 align-center justify-center text-center">
           {/* @ts-ignore */}
