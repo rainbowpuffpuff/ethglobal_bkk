@@ -117,14 +117,17 @@ const DataCollectionPage: NextPage<DataCollectionPageProps> = ({ params }) => {
         totalSteps={tasks.length}
         currentStep={step}
       />
-      {tasks[step - 1].type === "image" && (
-        <DataCollectionTaskImage imageSrc={tasks[step - 1].src as ImageTask["src"]} />
-      )}
-      {tasks[step - 1].type === "textbox" && (
+      {isImageTask(tasks[step - 1]) ? (
+        <DataCollectionTaskImage imageSrc={(tasks[step - 1] as ImageTask).src} />
+      ) : (
         <DataCollectionTaskTextInput step={step} task={tasks[step - 1] as TextboxTask} />
       )}
     </div>
   );
 };
+
+function isImageTask(task: Task): task is ImageTask {
+  return task.type === "image";
+}
 
 export default DataCollectionPage;
