@@ -35,3 +35,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+#service worker
+# Serwist
+public/sw*
+public/swe-worker*
